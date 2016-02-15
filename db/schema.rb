@@ -16,10 +16,11 @@ ActiveRecord::Schema.define(version: 20160215170701) do
   create_table "familymembers", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
-    t.datetime "birthday"
-    t.datetime "death"
+    t.date     "birthday"
+    t.date     "death"
     t.string   "birth_loc"
     t.string   "death_loc"
+    t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -27,8 +28,8 @@ ActiveRecord::Schema.define(version: 20160215170701) do
   create_table "marriages", force: :cascade do |t|
     t.integer  "husband_id"
     t.integer  "wife_id"
-    t.datetime "wedding_date"
-    t.datetime "divorce_date"
+    t.date     "wedding_date"
+    t.date     "divorce_date"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end

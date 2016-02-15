@@ -3,8 +3,8 @@ class CreateMarriages < ActiveRecord::Migration
     create_table :marriages do |t|
       t.integer :husband_id
       t.integer :wife_id
-      t.datetime :wedding_date
-      t.datetime :divorce_date
+      t.date :wedding_date
+      t.date :divorce_date
       t.timestamps null: false
     end
   end
