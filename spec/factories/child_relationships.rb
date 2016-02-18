@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :relative do
+  factory :child_relationship do
     
   end
 

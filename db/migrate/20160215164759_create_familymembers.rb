@@ -7,7 +7,7 @@ class CreateFamilymembers < ActiveRecord::Migration
       t.date :death
       t.string :birth_loc
       t.string :death_loc
-      t.integer :user_id
+      t.integer :tree_id
       t.timestamps null: false
     end
   end

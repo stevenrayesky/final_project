@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :marriage do
+  factory :sibling_relationship do
     
   end
 

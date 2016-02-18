@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160215170701) do
+ActiveRecord::Schema.define(version: 20160218155322) do
+
+  create_table "child_relationships", force: :cascade do |t|
+    t.integer  "child_id"
+    t.integer  "parent_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "familymembers", force: :cascade do |t|
     t.string   "first_name"
@@ -20,23 +27,32 @@ ActiveRecord::Schema.define(version: 20160215170701) do
     t.date     "death"
     t.string   "birth_loc"
     t.string   "death_loc"
-    t.integer  "user_id"
+    t.integer  "tree_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "marriages", force: :cascade do |t|
-    t.integer  "husband_id"
-    t.integer  "wife_id"
-    t.date     "wedding_date"
-    t.date     "divorce_date"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+  create_table "partner_relationships", force: :cascade do |t|
+    t.string   "kind"
+    t.integer  "first_partner_id"
+    t.integer  "second_partner_id"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
   end
 
-  create_table "relatives", force: :cascade do |t|
-    t.integer  "child_id"
-    t.integer  "parent_id"
+  create_table "sibling_relationships", force: :cascade do |t|
+    t.integer  "first_sibling_id"
+    t.integer  "second_sibling_id"
+    t.string   "kind"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  create_table "trees", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
