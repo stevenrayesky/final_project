@@ -7,7 +7,7 @@ class FamilymembersController < ApplicationController
 	def create
 		current_user
 		@familymember = Familymember.new(member_params)
-		@familymember.user_id = @current_user.id
+		@familymember.tree_id = params[:tree_id]
 		if @familymember.save
 			redirect_to (:back)
 		end
@@ -15,8 +15,6 @@ class FamilymembersController < ApplicationController
 
 	def show
 		current_user
-		@familymember = Familymember.new
-		@all_members = @current_user.familymembers
 	end
 
 

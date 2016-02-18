@@ -15,7 +15,7 @@
 				<% end %>
 				<% if user_signed_in? %>
 					<%= content_tag :li, class: "nav_links" do %>
-						<%= link_to "Your Tree", familymember_path(current_user) %>
+						<%= link_to "Your Trees", user_trees_path(current_user) %>
 					<% end %>
 				<% end %>
 				<%= content_tag :li, class: "nav_links" do %>
