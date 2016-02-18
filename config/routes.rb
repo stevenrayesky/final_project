@@ -9,7 +9,6 @@ devise_for :users, :controllers => { registrations: 'registrations' }
     root 'devise/sessions#new'
   end
   # You can have the root of your site routed with "root"
-  
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
@@ -19,8 +18,14 @@ devise_for :users, :controllers => { registrations: 'registrations' }
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
-  resources :users
-  resources :familymembers
+  resources :users do
+    resources :trees 
+  end
+  resources :trees do
+      resources :familymembers
+    end
+
+    # PUT '/users/:user_id/trees/:id' => 'trees#put'
   # Example resource route with options:
   #   resources :products do
   #     member do
