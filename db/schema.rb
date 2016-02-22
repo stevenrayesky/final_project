@@ -28,8 +28,10 @@ ActiveRecord::Schema.define(version: 20160218155322) do
     t.string   "birth_loc"
     t.string   "death_loc"
     t.integer  "tree_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.text     "children"
+    t.boolean  "origin",     default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   create_table "partner_relationships", force: :cascade do |t|

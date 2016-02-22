@@ -1,4 +1,7 @@
 class Familymember < ActiveRecord::Base
+
+	serialize :children,Array
+
 	has_many :familymembers
 	belongs_to :tree
 
@@ -6,7 +9,7 @@ class Familymember < ActiveRecord::Base
 	has_many :child_relationships, class_name: "ChildRelationship", foreign_key: "parent_id"
 
 	has_many :parents, through: :parent_relationships, source: :parent 
-	has_many :children, through: :child_relationships, source: :child
+	has_many :childs, through: :child_relationships, source: :child
 
 	has_many :first_partners, class_name: "PartnerRelationship", foreign_key: "second_partner_id"
 	has_many :second_partners, class_name: "PartnerRelationship", foreign_key: "first_partner_id"
@@ -30,5 +33,25 @@ class Familymember < ActiveRecord::Base
 	def siblings
 		to_siblings + have_siblings
 
+	end
+
+	def childs?
+ 		if childs != []
+ 			true
+ 		else
+ 			false
+ 		end
+	end
+
+	def fill_array
+		self.children = []
+		if childs?
+			childs.each do |f|
+				self.children.push(f)
+				if f.childs?
+					f.fill_array
+				end
+			end
+		end
 	end
 end

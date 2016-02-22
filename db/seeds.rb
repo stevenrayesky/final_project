@@ -14,7 +14,7 @@ user.save!
 
 Tree.create(name: "Rayesky Family", user_id: 1)
 
-Familymember.create(first_name: "Joseph", last_name: "Rayesky", birthday: "26/10/1954", birth_loc: "Philadelphia", tree_id: 1)
+Familymember.create(first_name: "Joseph", last_name: "Rayesky", birthday: "26/10/1954", birth_loc: "Philadelphia", tree_id: 1, origin: true)
 Familymember.create(first_name: "Marie", last_name: "Rayesky", birthday: "06/04/1955", birth_loc: "Philadelphia", tree_id: 1) 
 Familymember.create(first_name: "Joey", last_name: "Rayesky", birthday: "11/06/1980", birth_loc: "Philadelphia", tree_id: 1) 
 Familymember.create(first_name: "Julie", last_name: "Filius", birthday: "15/01/1984", birth_loc: "Philadelphia", tree_id: 1) 
