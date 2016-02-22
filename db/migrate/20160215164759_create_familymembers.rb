@@ -8,6 +8,8 @@ class CreateFamilymembers < ActiveRecord::Migration
       t.string :birth_loc
       t.string :death_loc
       t.integer :tree_id
+      t.text :children
+      t.boolean :origin, default: false
       t.timestamps null: false
     end
   end

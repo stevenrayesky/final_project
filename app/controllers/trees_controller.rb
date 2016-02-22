@@ -8,9 +8,14 @@ class TreesController < ApplicationController
 
 	def show
 		current_user
-		@tree = Tree.find(params[:id])
 		@familymember = Familymember.new
+		@tree = Tree.find(params[:id])
+		# Select all members of tree instance.
 		@all_members = @tree.familymembers
+		# Select Hierarchical top familymember of @tree.
+		@top = @all_members.first
+		# Variable to send to D3 script.
+		gon.familymembers = {children: @top.fill_array, first_name: @top.first_name}
 	end
 
 	def create

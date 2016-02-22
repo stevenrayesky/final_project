@@ -1,38 +1,42 @@
-// var canvas = d3.select("body").append("svg")
-// 	.attr("width", 500)
-// 	.attr("height", 500)
-// 	.append("g")
-// 		.attr("transform", "translate(50, 50)");
+$(document).ready(function () {
 
-// var tree = d3.layout.tree()
-// 	.size([400, 400]);
+	var canvas = d3.select("body").append("svg")
+		.attr("width", 1000)
+		.attr("height", 1000)
+		.append("g")
+			.attr("transform", "translate(50, 50)");
 
-// var nodes = tree.nodes(data);
-// var links = tree.links(nodes);
+	var tree = d3.layout.tree()
+		.size([500, 100]);
 
-// var node = canvas.selectAll("node")
-// 	.data(nodes)
-// 	.enter()
-// 	.append("g")
-// 		.attr("class", "node")
-// 		.attr("transform", function (d) { return "translate(" + d.y + "," + d.x + ")"; })
+	var nodes = tree.nodes(gon.familymembers);
+	var links = tree.links(nodes);
 
-// node.append("circle")
-// 	.attr("r", 5)
-// 	.attr("fill", "steelblue")
+	var node = canvas.selectAll("node")
+		.data(nodes)
+		.enter()
+		.append("g")
+			.attr("class", "node")
+			.attr("transform", function (d) { return "translate(" + d.x + "," + d.y + ")"; })
+
+	node.append("circle")
+		.attr("r", 5)
+		.attr("fill", "steelblue")
 
 
-// node.append("text")
-// 	.text(function (d) { return d.name; });
+	node.append("text")
+		.text(function (d) { return d.first_name; });
 
-// var diagonal = d3.svg.diagonal()
-// 	.projection(function (d) { return [d.y, d.x]; });
+	var diagonal = d3.svg.diagonal()
+		.projection(function (d) { return [d.x, d.y]; });
 
-// canvas.selectAll(".link")
-// 	.data(links)
-// 	.enter()
-// 	.append("path")
-// 		.attr("class", "link")
-// 		.attr("fill", "none")
-// 		.attr("stroke", "grey")
-// 		.attr("d", diagonal);
+	canvas.selectAll(".link")
+		.data(links)
+		.enter()
+		.append("path")
+			.attr("class", "link")
+			.attr("fill", "none")
+			.attr("stroke", "grey")
+			.attr("d", diagonal);
+
+});
