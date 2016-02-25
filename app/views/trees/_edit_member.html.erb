@@ -1,0 +1,24 @@
+<%= form_for @member, url: tree_familymember_path(@tree.id, @member.id), method: :put do |f| %>
+			<%= f.label :first_name %>
+			<%= f.text_field :first_name %>
+			<br>
+			<%= f.label :last_name %>
+			<%= f.text_field :last_name %>
+			<br>
+			<%= f.label :birthday %>
+			<%= f.date_field :birthday %>
+			<br>
+			<%= f.label :death %>
+			<%= f.date_field :death %>
+			<br>
+			<%= f.label :birth_loc %>
+			<%= f.text_field :birth_loc %>
+			<br>
+			<%= f.label :death_loc %>
+			<%= f.text_field :death_loc %>
+			<br>
+			<%= f.submit :update %>
+<% end %>
+<%= content_tag :span, class: "close_edit_form" do %>
+	X
+<% end %>

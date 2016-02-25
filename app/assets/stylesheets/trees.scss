@@ -7,3 +7,56 @@
 	text-decoration: none;
 	}
 }
+
+.rect {
+	border-radius: 15px;
+	stroke-width:1;
+	stroke:rgb(0,0,0);
+	cursor: pointer;
+}
+
+.options_modal {
+	width: 100px;
+	height: 125px;
+	position: absolute;
+	left: -400px;
+	top: 0;
+	border: black solid 1px;
+	text-align: center;
+}
+
+.options_list {
+	padding: 0;
+	list-style-type: none;
+}
+
+.option_item {
+	cursor: pointer;
+	span {
+		font-size: 20px;
+	}
+}
+
+.close_modal {
+	position: absolute;
+	left: 90%;
+	bottom: 0;
+	cursor: pointer;
+}
+
+.edit_familymember {
+	width: 150px;
+	height: 300px;
+	position: absolute;
+	border: black solid 1px;
+	
+}
+
+.close_edit_form {
+		z-index: 10;
+		position: relative;
+		left: 0;
+		bottom: 0;
+		cursor: pointer;
+	}
+

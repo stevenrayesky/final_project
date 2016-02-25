@@ -30,30 +30,51 @@
 	<% @all_members.each do |member| %>
 		<%= content_tag :p do %>
 			<%= content_tag :p do %>
-				<%= member.first_name %><%= content_tag :span do %> <%= link_to "delete familymember", tree_familymember_path(@tree.id, member.id), controller: :familymembers, method: :delete %><% end %>
+				<%= member.first_name %><%= content_tag :span do %> <% end %>
 			<% end %>
-			<%= form_for member, url: tree_familymember_path(@tree.id, member.id), method: :put do |f| %>
-				<%= f.label :first_name %>
-				<%= f.text_field :first_name %>
-				<br>
-				<%= f.label :last_name %>
-				<%= f.text_field :last_name %>
-				<br>
-				<%= f.label :birthday %>
-				<%= f.date_field :birthday %>
-				<br>
-				<%= f.label :death %>
-				<%= f.date_field :death %>
-				<br>
-				<%= f.label :birth_loc %>
-				<%= f.text_field :birth_loc %>
-				<br>
-				<%= f.label :death_loc %>
-				<%= f.text_field :death_loc %>
-				<br>
-				<%= f.submit :update %>
-			<% end %>
+			
 			  
 		<% end %>
 	<% end %>
 <% end %>
+
+<!-- BEGIN OPTIONS MODAL -->
+<%= content_tag :div, class: "options_modal" do %>
+	<%= content_tag :ul,  class: "options_list" do %>
+	<%= content_tag :li, class: "option_item" do %>
+			<%= link_to "Edit", edit_tree_familymember_path(@tree.id, @top.id), remote: true, class: "li_items", id: "edit_item" %>
+		<% end %>
+		<%= content_tag :li, class: "option_item" do %>
+			<%= content_tag :span, class: "li_items", id: "child_item" do %>
+				Child
+			<% end %>
+		<% end %>
+		<%= content_tag :li, class: "option_item" do %>
+			<%= content_tag :span, class: "li_items", id: "parent_item" do %>
+				Parent
+			<% end %>
+		<% end %>
+		<%= content_tag :li, class: "option_item" do %>
+			<%= content_tag :span, class: "li_items", id: "partner_item" do %>
+				Partner
+			<% end %>
+		<% end %>
+		<%= content_tag :li, class: "option_item" do %>
+			<%= content_tag :span, class: "li_items", id: "delete_item" do %>
+				<%= link_to "delete", tree_familymember_path(@tree.id, @top.id), controller: :familymembers, method: :delete, remote: true %>
+			<% end %>
+		<% end %>
+	<% end %>
+	<%= content_tag :span, class: "close_modal" do %>
+		X
+	<% end %>
+<% end %>
+
+<!-- END OPTIONS MODAL -->
+
+<!-- BEGIN EDIT MODAL -->
+
+
+<!-- END EDIT MODAL -->
+
+
