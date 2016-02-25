@@ -7,9 +7,10 @@ class FamilymembersController < ApplicationController
 	def create
 		current_user
 		@familymember = Familymember.new(familymember_params)
-		@tree = Tree.where(id: params[:tree_id])
+		@tree = Tree.where(id: params[:tree_id]).first
 		# If this is the first familymember of a tree, it is set as the origin.
-		if @tree.familymembers == nil
+		binding.pry
+		if @tree.familymembers? == false
 			@familymember.origin = true
 		end
 		@familymember.tree_id = @tree.id
@@ -27,6 +28,14 @@ class FamilymembersController < ApplicationController
 		@familymember.update(familymember_params)
 		if @familymember.save
 			redirect_to (:back)
+		end
+	end
+
+	def edit
+		@member = Familymember.find(params[:id])
+		@tree = Tree.find(params[:tree_id])
+		respond_to do |format|
+			format.js
 		end
 	end
 

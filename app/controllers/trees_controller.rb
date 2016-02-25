@@ -13,9 +13,11 @@ class TreesController < ApplicationController
 		# Select all members of tree instance.
 		@all_members = @tree.familymembers
 		# Select Hierarchical top familymember of @tree.
-		@top = @all_members.first
+		@top = @tree.find_origin
 		# Variable to send to D3 script.
-		gon.familymembers = {children: @top.fill_array, first_name: @top.first_name}
+		if @tree.familymembers?
+			gon.familymembers = {children: @top.fill_array, first_name: @top.first_name, id: @tree.id}
+		end
 	end
 
 	def create

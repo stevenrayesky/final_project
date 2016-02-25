@@ -1,0 +1,8 @@
+$(".options_modal").append($("<%= j render partial: 'trees/edit_member', object: @member, locals: {tree: @tree} %>"));
+		var position = $('#edit_item').position();
+		$('.edit_familymember').css( {top: position.top, left: position.left + 75});
+
+
+// $("form").each(function () {
+// 		this.reset();
+// 	})
