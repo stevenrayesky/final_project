@@ -2,42 +2,13 @@
 		<%= f.label :change_name %>
 		<%= f.text_field :name %>
 		<%= f.submit :update %>
-<% end %>
+<% end %> 
 
-<%= form_for @familymember, url: tree_familymembers_path(@tree.id) do |f| %>
-	<%= f.label :first_name %>
-	<%= f.text_field :first_name %>
-	<br>
-	<%= f.label :last_name %>
-	<%= f.text_field :last_name %>
-	<br>
-	<%= f.label :birthday %>
-	<%= f.date_field :birthday %>
-	<br>
-	<%= f.label :death %>
-	<%= f.date_field :death %>
-	<br>
-	<%= f.label :birth_loc %>
-	<%= f.text_field :birth_loc %>
-	<br>
-	<%= f.label :death_loc %>
-	<%= f.text_field :death_loc %>
-	<br>
-	<%= f.submit :create %>
-<% end %>
-
-<%= content_tag :div, class: "members_list" do %>
-	<% @all_members.each do |member| %>
-		<%= content_tag :p do %>
-			<%= content_tag :p do %>
-				<%= member.first_name %><%= content_tag :span do %> <% end %>
-			<% end %>
-			
-			  
-		<% end %>
+<%= content_tag :svg, class: "main_svg" do %>
+	<%= content_tag :g, class: "main_g" do %>
+	
 	<% end %>
 <% end %>
-
 <!-- BEGIN OPTIONS MODAL -->
 <%= content_tag :div, class: "options_modal" do %>
 	<%= content_tag :ul,  class: "options_list" do %>
@@ -45,9 +16,7 @@
 			<%= link_to "Edit", edit_tree_familymember_path(@tree.id, @top.id), remote: true, class: "li_items", id: "edit_item" %>
 		<% end %>
 		<%= content_tag :li, class: "option_item" do %>
-			<%= content_tag :span, class: "li_items", id: "child_item" do %>
-				Child
-			<% end %>
+			<%= link_to "New Child", new_child_path(@tree.id, @top.id), remote: true, class: "li_items", id: "child_item" %>
 		<% end %>
 		<%= content_tag :li, class: "option_item" do %>
 			<%= content_tag :span, class: "li_items", id: "parent_item" do %>
@@ -60,16 +29,14 @@
 			<% end %>
 		<% end %>
 		<%= content_tag :li, class: "option_item" do %>
-			<%= content_tag :span, class: "li_items", id: "delete_item" do %>
-				<%= link_to "delete", tree_familymember_path(@tree.id, @top.id), controller: :familymembers, method: :delete, remote: true %>
-			<% end %>
+			<%= link_to "delete", tree_familymember_path(@tree.id, @top.id), remote: true, controller: :familymembers, method: :delete, class: "li_items", id: "delete_item" %>
 		<% end %>
 	<% end %>
 	<%= content_tag :span, class: "close_modal" do %>
 		X
 	<% end %>
 <% end %>
-
+	
 <!-- END OPTIONS MODAL -->
 
 <!-- BEGIN EDIT MODAL -->
@@ -77,4 +44,6 @@
 
 <!-- END EDIT MODAL -->
 
+<!-- Line below allows the gon variables to be loaded, otherwise they will not show because <%= include_gon %> is in application.html.erb, which is not reloaded on every view (Turbolinks). -->
+<%= include_gon :watch => true %>
 

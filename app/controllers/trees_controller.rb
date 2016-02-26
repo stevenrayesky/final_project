@@ -9,6 +9,7 @@ class TreesController < ApplicationController
 	def show
 		current_user
 		@familymember = Familymember.new
+		@child = Familymember.new
 		@tree = Tree.find(params[:id])
 		# Select all members of tree instance.
 		@all_members = @tree.familymembers
@@ -16,7 +17,7 @@ class TreesController < ApplicationController
 		@top = @tree.find_origin
 		# Variable to send to D3 script.
 		if @tree.familymembers?
-			gon.familymembers = {children: @top.fill_array, first_name: @top.first_name, id: @tree.id}
+			gon.watch.familymembers = {children: @top.fill_array, first_name: @top.first_name, id: @tree.id}
 		end
 	end
 
