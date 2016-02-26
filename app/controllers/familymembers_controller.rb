@@ -4,7 +4,7 @@ class FamilymembersController < ApplicationController
 		@member = Familymember.new
 	end
 
-	def create
+	def create_child
 		current_user
 		@parent = Familymember.find(familymember_params[:parent_id])
 		@familymember = Familymember.new(familymember_params.except!(:parent_id))
@@ -23,12 +23,53 @@ class FamilymembersController < ApplicationController
 				@new_child_relationship.save
 			end	
 		end
-		# @top = @tree.find_origin
-		# if @tree.familymembers?
-		# 	gon.watch.familymembers = {children: @top.fill_array, first_name: @top.first_name, id: @tree.id}
-		# end
 		redirect_to (:back)
 	end
+
+	def create_parent
+		current_user
+		@child = Familymember.find(familymember_params[:child_id])
+		@familymember = Familymember.new(familymember_params.except!(:child_id))
+		@tree = Tree.where(id: params[:tree_id]).first
+		# If this is the first familymember of a tree, it is set as the origin.
+		if @tree.familymembers? == false
+			@familymember.origin = true
+		end
+		
+		@familymember.tree_id = @tree.id
+		if @familymember.save
+			if @child.id
+				@new_parent_relationship = ChildRelationship.new
+				@new_parent_relationship.parent_id = @familymember.id
+				@new_parent_relationship.child_id = @child.id
+				@new_parent_relationship.save
+			end	
+		end
+		redirect_to (:back)
+	end
+
+	def create_partner
+		current_user
+		@partner = Familymember.find(familymember_params[:partner_id])
+		@familymember = Familymember.new(familymember_params.except!(:kind, :partner_id))
+		@tree = Tree.where(id: params[:tree_id]).first
+		# If this is the first familymember of a tree, it is set as the origin.
+		if @tree.familymembers? == false
+			@familymember.origin = true
+		end
+		
+		@familymember.tree_id = @tree.id
+		if @familymember.save
+			if @partner.id
+				@new_partner_relationship = PartnerRelationship.new
+				@new_partner_relationship.second_partner_id = @familymember.id
+				@new_partner_relationship.first_partner_id = @partner.id
+				@new_partner_relationship.save
+			end	
+		end
+		redirect_to (:back)
+	end
+
 
 	def show
 		current_user
@@ -53,6 +94,25 @@ class FamilymembersController < ApplicationController
 	def new_child
 		@parent = Familymember.find(params[:id])
 		@child = Familymember.new
+		@tree = Tree.find(params[:tree_id])
+		respond_to do |format|
+			format.js
+		end
+	end
+
+	def new_parent
+		@child = Familymember.find(params[:id])
+		@parent = Familymember.new
+		@tree = Tree.find(params[:tree_id])
+		respond_to do |format|
+			format.js
+		end
+	end
+
+	def new_partner
+		@new_partner_relationship = PartnerRelationship.new
+		@partner = Familymember.find(params[:id])
+		@new_partner = Familymember.new
 		@tree = Tree.find(params[:tree_id])
 		respond_to do |format|
 			format.js
@@ -85,6 +145,6 @@ class FamilymembersController < ApplicationController
 	private
 
 	def familymember_params
-		params.require(:familymember).permit(:first_name, :last_name, :birthday, :death, :birth_loc, :death_loc, :parent_id)
+		params.require(:familymember).permit(:first_name, :last_name, :birthday, :death, :birth_loc, :death_loc, :parent_id, :child_id, :partner_id, :kind)
 	end
 end

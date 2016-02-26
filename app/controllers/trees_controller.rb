@@ -8,8 +8,11 @@ class TreesController < ApplicationController
 
 	def show
 		current_user
+		@new_partner_relationship = PartnerRelationship.new
 		@familymember = Familymember.new
 		@child = Familymember.new
+		@parent = Familymember.new
+		@new_partner = Familymember.new
 		@tree = Tree.find(params[:id])
 		# Select all members of tree instance.
 		@all_members = @tree.familymembers

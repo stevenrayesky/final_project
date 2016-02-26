@@ -1,4 +1,4 @@
-<%= form_for @child, url: create_child_path(@tree.id, @child.id) do |f| %>
+<%= form_for @parent, url: create_parent_path(@tree.id, @parent.id) do |f| %>
 	<%= f.label :first_name %>
 	<%= f.text_field :first_name %>
 	<br>
@@ -17,6 +17,6 @@
 	<%= f.label :death_loc %>
 	<%= f.text_field :death_loc %>
 	<br>
-	<%= f.hidden_field :parent_id, :value => @parent.id %>
+	<%= f.hidden_field :child_id, :value => @child.id %>
 	<%= f.submit :create %>
 <% end %>
