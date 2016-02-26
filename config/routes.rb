@@ -25,6 +25,8 @@ devise_for :users, :controllers => { registrations: 'registrations' }
       resources :familymembers
     end
 
+    get '/trees/:tree_id/familymembers/:id/new_child' => 'familymembers#new_child', as: :new_child
+    get '/trees/:tree_id/familymembers' => 'familymembers#gon'
     # PUT '/users/:user_id/trees/:id' => 'trees#put'
   # Example resource route with options:
   #   resources :products do

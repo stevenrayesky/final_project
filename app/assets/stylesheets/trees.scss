@@ -53,10 +53,17 @@
 }
 
 .close_edit_form {
-		z-index: 10;
 		position: relative;
 		left: 0;
 		bottom: 0;
 		cursor: pointer;
 	}
+
+.main_svg {
+	width: 1000px;
+	height: 1000px;
+	.main_g {
+		transform: translate(50, 50);
+	}
+}
 

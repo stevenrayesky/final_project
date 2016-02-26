@@ -1,0 +1,7 @@
+$("#delete_item").on("ajax:complete", function(){
+	var delete_member_id = $('#delete_item').attr('data');
+	$('.node[data=' + delete_member_id + ']').animate({"opacity": "0"}, 1000).delay(500).slideUp(1000);
+	console.log("Update gon variable...");
+	// gon.watch('familymembers', render);
+});
+
