@@ -26,6 +26,14 @@ devise_for :users, :controllers => { registrations: 'registrations' }
     end
 
     get '/trees/:tree_id/familymembers/:id/new_child' => 'familymembers#new_child', as: :new_child
+    post '/trees/:tree_id/familymembers/create_child' => 'familymembers#create_child', as: :create_child
+
+    get '/trees/:tree_id/familymembers/:id/new_parent' => 'familymembers#new_parent', as: :new_parent
+    post '/trees/:tree_id/familymembers/create_parent' => 'familymembers#create_parent', as: :create_parent
+
+    get '/trees/:tree_id/familymembers/:id/new_partner' => 'familymembers#new_partner', as: :new_partner
+    post '/trees/:tree_id/familymembers/create_partner' => 'familymembers#create_partner', as: :create_partner
+
     get '/trees/:tree_id/familymembers' => 'familymembers#gon'
     # PUT '/users/:user_id/trees/:id' => 'trees#put'
   # Example resource route with options:
