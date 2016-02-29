@@ -50,10 +50,24 @@ class Familymember < ActiveRecord::Base
  		end
 	end
 
+	def partners?
+ 		if partners != []
+ 			true
+ 		else
+ 			false
+ 		end
+	end
+
 	def fill_array
+		if partners?
+			self.spouse = partners.first.first_name
+		end
 		self.children = []
 		if childs?
 			childs.each do |f|
+			if f.partners?
+				f.spouse = f.partners.first.first_name
+			end
 				self.children.push(f)
 				if f.childs?
 					f.fill_array
