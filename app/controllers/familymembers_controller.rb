@@ -4,6 +4,19 @@ class FamilymembersController < ApplicationController
 		@member = Familymember.new
 	end
 
+	def create
+		current_user
+		@familymember = Familymember.new(familymember_params)
+		@tree = Tree.find(params[:tree_id])
+		if @tree.familymembers? == false
+			@familymember.origin = true
+		end
+		@familymember.tree_id = @tree.id
+		if @familymember.save
+			redirect_to(:back)
+		end
+	end
+
 	def create_child
 		current_user
 		@parent = Familymember.find(familymember_params[:parent_id])
@@ -73,6 +86,7 @@ class FamilymembersController < ApplicationController
 
 	def show
 		current_user
+		@familymember = Familymember.find(params[:id])
 	end
 
 	def update

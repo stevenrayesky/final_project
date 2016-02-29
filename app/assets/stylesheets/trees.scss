@@ -8,6 +8,16 @@
 	}
 }
 
+.initial_svg {
+	width: 500px;
+	height: 500px;
+}
+
+.initial_rect {
+	fill: steelblue;
+	text-anchor: middle;
+}
+
 .rect {
 	border-radius: 15px;
 	stroke-width:1;
