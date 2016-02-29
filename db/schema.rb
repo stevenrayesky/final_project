@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 20160218155322) do
   create_table "child_relationships", force: :cascade do |t|
     t.integer  "child_id"
     t.integer  "parent_id"
+    t.integer  "kind"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
