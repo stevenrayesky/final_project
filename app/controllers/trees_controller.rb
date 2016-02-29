@@ -20,7 +20,7 @@ class TreesController < ApplicationController
 		@top = @tree.find_origin
 		# Variable to send to D3 script.
 		if @tree.familymembers?
-			gon.watch.familymembers = {children: @top.fill_array, first_name: @top.first_name, id: @tree.id}
+			gon.watch.familymembers = {children: @top.fill_array, first_name: @top.first_name, id: @top.id, tree_id: @tree.id}
 		end
 	end
 

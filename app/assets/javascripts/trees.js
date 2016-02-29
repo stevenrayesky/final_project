@@ -2,9 +2,11 @@ var ready = function() {
 
 	// MOVE Familymember Options Modal into view.
 	$('.node').on('click', function(){
-		tree_id = gon.familymembers.id;
+		tree_id = gon.familymembers.tree_id;
 		member_id = $(this).attr('data');
 		$('.options_modal').css( {top:event.pageY - 50, left: event.pageX - 170});
+		$('#view_item').attr('href', function() { return "/trees/" + tree_id + "/familymembers/" + member_id})
+		
 		$('#edit_item').attr('href', function() { return "/trees/" + tree_id + "/familymembers/" + member_id + "/edit"})
 		
 		$('#child_item').attr('href', function() { return "/trees/" + tree_id + "/familymembers/" + member_id + "/new_child"})
