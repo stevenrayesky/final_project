@@ -52,11 +52,11 @@ ChildRelationship.create(parent_id: 5, child_id: 10)
 ChildRelationship.create(parent_id: 11, child_id: 9) 
 ChildRelationship.create(parent_id: 11, child_id: 10)
 
-SiblingRelationship.create(first_sibling_id: 5, second_sibling_id: 3, kind: "blood")
-SiblingRelationship.create(first_sibling_id: 5, second_sibling_id: 4, kind: "blood")
-SiblingRelationship.create(first_sibling_id: 5, second_sibling_id: 6, kind: "blood")
-SiblingRelationship.create(first_sibling_id: 5, second_sibling_id: 7, kind: "blood")
-SiblingRelationship.create(first_sibling_id: 5, second_sibling_id: 8, kind: "blood")
+# SiblingRelationship.create(first_sibling_id: 5, second_sibling_id: 3)
+# SiblingRelationship.create(first_sibling_id: 5, second_sibling_id: 4)
+# SiblingRelationship.create(first_sibling_id: 5, second_sibling_id: 6)
+# SiblingRelationship.create(first_sibling_id: 5, second_sibling_id: 7)
+# SiblingRelationship.create(first_sibling_id: 5, second_sibling_id: 8)
 
 
 

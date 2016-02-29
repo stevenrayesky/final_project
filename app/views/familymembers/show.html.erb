@@ -1,5 +1,43 @@
-<% @familymember.partners.each do |p| %>
-	<%= content_tag :p do %>
-		<%= p.first_name %> 
+<%= content_tag :div, class: "partners_div" do %>
+	<%= content_tag :h3, class: "relationships_heading" do %>
+		<%= @familymember.first_name %>'s Partner(s)
+	<% end %>
+	<% @familymember.partners.each do |p| %>
+		<%= content_tag :p do %>
+			<%= link_to p.first_name, tree_familymember_path(@tree.id, p.id) %> 
+		<% end %>
+	<% end %>
+<% end %>
+
+<%= content_tag :div, class: "parents_div" do %>
+	<%= content_tag :h3, class: "relationships_heading" do %>
+		<%= @familymember.first_name %>'s Parents
+	<% end %>
+	<% @familymember.parents.each do |p| %>
+		<%= content_tag :p do %>
+		<%= link_to p.first_name, tree_familymember_path(@tree.id, p.id) %> 
+		<% end %>
+	<% end %>
+<% end %>
+
+<%= content_tag :div, class: "childs_div" do %>
+	<%= content_tag :h3, class: "relationships_heading" do %>
+		<%= @familymember.first_name %>'s Children
+	<% end %>
+	<% @familymember.childs.each do |p| %>
+		<%= content_tag :p do %>
+			<%= link_to p.first_name, tree_familymember_path(@tree.id, p.id) %> 
+		<% end %>
+	<% end %>
+<% end %>
+
+<%= content_tag :div, class: "siblings_div" do %>
+	<%= content_tag :h3, class: "relationships_heading" do %>
+		<%= @familymember.first_name %>'s Siblings
+	<% end %>
+	<% @familymember.siblings.each do |p| %>
+		<%= content_tag :p do %>
+			<%= link_to p.first_name, tree_familymember_path(@tree.id, p.id) %> 
+		<% end %>
 	<% end %>
 <% end %>
