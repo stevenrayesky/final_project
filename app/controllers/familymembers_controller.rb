@@ -34,7 +34,8 @@ class FamilymembersController < ApplicationController
 				@new_child_relationship.child_id = @familymember.id
 				@new_child_relationship.parent_id = @parent.id
 				@new_child_relationship.save
-			end	
+			end
+			@familymember.make_siblings(@parent)
 		end
 		redirect_to (:back)
 	end
@@ -87,6 +88,7 @@ class FamilymembersController < ApplicationController
 	def show
 		current_user
 		@familymember = Familymember.find(params[:id])
+		@tree = Tree.find(params[:tree_id])
 	end
 
 	def update

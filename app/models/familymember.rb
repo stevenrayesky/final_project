@@ -1,5 +1,7 @@
 class Familymember < ActiveRecord::Base
 
+	SIBLING_TYPE = { 'Full' => 1, 'Half' => 2, 'Step' => 3, 'Adoptive' => 4}
+
 	serialize :children,Array
 
 	has_many :familymembers
@@ -35,6 +37,11 @@ class Familymember < ActiveRecord::Base
 
 	end
 
+	def siblings?(familymember)
+		siblings.include? familymember
+		
+	end
+
 	def childs?
  		if childs != []
  			true
@@ -50,6 +57,20 @@ class Familymember < ActiveRecord::Base
 				self.children.push(f)
 				if f.childs?
 					f.fill_array
+				end
+			end
+		end
+	end
+
+	def make_siblings(parent)
+		parent.childs.each do |s|
+			if self == s || self.siblings?(s)
+			else
+				@siblings = SiblingRelationship.new(first_sibling_id: self.id, second_sibling_id: s.id)
+				if @siblings.save!
+					puts "#{self.first_name} and #{s.first_name} are now siblings!"
+				else
+					"Error saving siblings."
 				end
 			end
 		end
