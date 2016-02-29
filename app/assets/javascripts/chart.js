@@ -38,7 +38,12 @@ var render = function(resource) {
 	.attr("text-anchor", "middle")
 	.attr("x", 50)
 	.attr("y", 30)
-	.text(function (d) { return d.first_name; });
+	.text(function (d) { if(d.spouse != null) {
+		return d.first_name + " and " + d.spouse;
+	} else {
+		return d.first_name
+	};
+		 });
 
 	// Exit phase
 	node.exit().remove();
