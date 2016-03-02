@@ -1,4 +1,5 @@
 $("#delete_item").on("ajax:complete", function(){
+	$('.options_modal').css( {top: 0, left: -800});
 	// var delete_member_id = $('#delete_item').attr('data');
 	// $('.node[data=' + delete_member_id + ']').animate({"opacity": "0"}, 1000).delay(500).slideUp(1000);
 	// console.log("Update chart...");
@@ -11,12 +12,10 @@ $("#delete_item").on("ajax:complete", function(){
 	// render(chart);
 	// console.log('<%= @current_user.id %>');
 	var url = '/load/trees/' + <%= @tree.id %> + '/familymembers/';
-	// var url = '/trees/' + <%= @tree.id %> + '/familymembers/' + <%= @familymember.id %> + '/destroy';
 	d3.json(url, function(error, data){
 		console.log(data);
 		if (error) return console.warn(error);
 		console.log("DATA");
-		root = data[0];
 		render(data);
 	});
 });
