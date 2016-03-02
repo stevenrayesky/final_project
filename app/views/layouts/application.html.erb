@@ -3,12 +3,12 @@
 <head>
   <title>FinalProject</title>
   <!-- Line below allows the gon variables to be loaded, otherwise they will not show because <%= include_gon %> is in application.html.erb, which is not reloaded on every view (Turbolinks). -->
-<%= include_gon :watch => true %>
+
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body data-no-turbolink="true" >
 	<header>
 		<nav>
 			<%= content_tag :ul, class: "nav_link_list" do %>

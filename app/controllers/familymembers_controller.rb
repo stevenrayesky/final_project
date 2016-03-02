@@ -1,5 +1,6 @@
 class FamilymembersController < ApplicationController
-
+	respond_to :js, :json
+	
 	def new
 		@member = Familymember.new
 	end
@@ -37,7 +38,12 @@ class FamilymembersController < ApplicationController
 			end
 			@familymember.make_siblings(@parent)
 		end
-		redirect_to (:back)
+		@top = @tree.find_origin
+		@tree = Tree.find(params[:tree_id])	
+		@chart = {children: @top.fill_array, first_name: @top.first_name, id: @top.id, tree_id: @tree.id, spouse: @top.partners.first.first_name}.to_json
+		respond_to do |format|
+			format.js
+		end
 	end
 
 	def create_parent
@@ -136,26 +142,34 @@ class FamilymembersController < ApplicationController
 	end
 
 	def destroy
+		current_user
 		@tree = Tree.find(params[:tree_id])	
 		@familymember = Familymember.find(params[:id])
 		if @familymember.destroy
 			@top = @tree.find_origin
-			# if @tree.familymembers?
-			# 	gon.familymembers = {children: @top.fill_array, first_name: @top.first_name, id: @tree.id}
-			# end
+			if @tree.familymembers?
+				@chart = {children: @top.fill_array, first_name: @top.first_name, id: @top.id, tree_id: @tree.id, spouse: @top.partners.first.first_name}
+			end
 			respond_to do |format|
 				format.js
+				format.json { render json: @chart }
 			end
 			
 		end
 	end
 
-	def gon
-		# @tree = Tree.find(params[:tree_id])	
-		# @familymember = Familymember.find(params[:id])
-		# @top = @tree.find_origin
-		# gon.watch.familymembers = {children: @top.fill_array, first_name: @top.first_name, id: @tree.id}
-		# binding.pry
+	def json_return
+		current_user
+		@tree = Tree.find(params[:tree_id])	
+		@top = @tree.find_origin
+		if @tree.familymembers?
+			@chart = {children: @top.fill_array, first_name: @top.first_name, id: @top.id, tree_id: @tree.id, spouse: @top.partners.first.first_name}
+		end
+		respond_to do |format|
+			format.json { render json: @chart.to_json }
+		end
+
+
 	end
 
 	private

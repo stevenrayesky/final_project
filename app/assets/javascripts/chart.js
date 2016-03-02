@@ -1,52 +1,54 @@
-var render = function(resource) {
+var render = function(data) {
 	var rect_width = 100;
 	var rect_height = 50;
-	var data = resource;
 	var tree_id = data.id;
 
 	// var svg = d3.select(".main_container").append("svg")
 	// .attr("width", 1000)
 	// .attr("height", 1000)
 	// .append("g")
-	// .attr("transform", "translate(50, 50)");
+	// .attr("transfo rm", "translate(50, 50)");
 
-	var svg = d3.select(".main_g");
+	var svg = d3.select(".main_svg");
 
 	var tree = d3.layout.tree()
 	.size([700, 400]);
 
-	var nodes = tree.nodes(resource);
+	var nodes = tree.nodes(data);
 	var links = tree.links(nodes);
 
 	// Bind data
-	var node = svg.selectAll("node").data(nodes);
-	
-	// Enter phase
-	node.enter().append("g")
-	.attr("class", "node")
-	.attr("transform", function (d) { return "translate(" + d.x + "," + d.y + ")"; })
-	.attr("data", function (d) { return d.id})
+	var node = svg.selectAll(".node")
+		.data(nodes, function(d) { return d.id; });
+	var test = svg.selectAll(".node")
+		.data(nodes);
 
-	// Update phase
-	node
-	.append("rect")
-	.attr("class", "rect")
-	.attr("width", rect_width)
-	.attr("height", rect_height)
-	.attr("fill", "steelblue")
-	node.append("text")
-	.attr("text-anchor", "middle")
-	.attr("x", 50)
-	.attr("y", 30)
-	.text(function (d) { if(d.spouse != null) {
+	// Enter phase
+	var g = node.enter().append("g")
+		.attr("class", "node")
+		.attr("transform", function (d) { return "translate(" + d.x + "," + d.y + ")"; })
+		.attr("data", function (d) { return d.id});
+
+	var rects = g.append("rect")
+		.attr("class", "rect")
+		.attr("width", rect_width)
+		.attr("height", rect_height)
+		.attr("fill", "steelblue");
+
+	var texts = g.append("text")
+		.attr("text-anchor", "middle")
+		.attr("x", 50)
+		.attr("y", 30)
+		.text(function (d) { if(d.spouse != null) {
 		return d.first_name + " and " + d.spouse;
-	} else {
-		return d.first_name
-	};
-		 });
+		} else {
+			return d.first_name
+		};
 
 	// Exit phase
 	node.exit().remove();
+
+	});
 
 	var diagonal = d3.svg.diagonal()
 	.projection(function (d) { return [d.x + (rect_width/2), d.y + rect_height]; });
@@ -71,7 +73,7 @@ $(document).on('page:load page:change', function(){
 	window.setTimeout(function(){
 			if ($('.options_modal').length == 1 ) {
 		console.log("Rendering...")
-		render(gon.familymembers)
+		render($('.main_svg').data('chart'));
 	}
 	},1000);
 

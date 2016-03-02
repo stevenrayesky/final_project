@@ -1,3 +1,4 @@
+<%= include_gon :watch => true %>
 <%= form_for @tree, method: :put do |f| %>
 		<%= f.label :change_name %>
 		<%= f.text_field :name %>
@@ -28,10 +29,8 @@
 	  
 <% end %>
 
-<%= content_tag :svg, class: "main_svg" do %>
-	<%= content_tag :g, class: "main_g" do %>
+<%= content_tag :svg, class: "main_svg", data: {chart: @chart } do %>
 	
-	<% end %>
 <% end %>
 <!-- BEGIN OPTIONS MODAL -->
 <% if @top %>
@@ -68,6 +67,5 @@
 
 <!-- END EDIT MODAL -->
 
-<!-- Line below allows the gon variables to be loaded, otherwise they will not show because <%= include_gon %> is in application.html.erb, which is not reloaded on every view (Turbolinks). -->
-<%= include_gon :watch => true %>
+
 
