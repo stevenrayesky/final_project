@@ -1,0 +1,5 @@
+$('.main_svg').removeAttr('data-chart');
+$('.main_svg').attr('data-chart', '<%= raw @chart %>');
+var chart = $('.main_svg').data('chart');
+console.log("Update chart...");
+render(chart);
