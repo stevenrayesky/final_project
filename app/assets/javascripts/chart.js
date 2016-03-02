@@ -1,4 +1,6 @@
 var render = function(data) {
+	console.log('Running Render...');
+	console.log(data);
 	var rect_width = 100;
 	var rect_height = 50;
 	var tree_id = data.id;
@@ -20,8 +22,8 @@ var render = function(data) {
 	// Bind data
 	var node = svg.selectAll(".node")
 		.data(nodes, function(d) { return d.id; });
-	var test = svg.selectAll(".node")
-		.data(nodes);
+	// var test = svg.selectAll(".node")
+	// 	.data(nodes);
 
 	// Enter phase
 	var g = node.enter().append("g")
@@ -43,25 +45,24 @@ var render = function(data) {
 		return d.first_name + " and " + d.spouse;
 		} else {
 			return d.first_name
-		};
+		};});
 
 	// Exit phase
 	node.exit().remove();
 
-	});
-
 	var diagonal = d3.svg.diagonal()
 	.projection(function (d) { return [d.x + (rect_width/2), d.y + rect_height]; });
 
-	svg.selectAll(".link")
-	.data(links)
-	.enter()
+	var link = svg.selectAll(".link")
+	.data(links, function(d){ return d.target.id });
+	link.enter()
 	.append("path")
 	.attr("class", "link")
 	.attr("fill", "none")
 	.attr("stroke", "grey")
 	.attr("d", diagonal);
 
+	link.exit().remove();
 // ready function is in trees.js
 ready();
 

@@ -1,5 +1,8 @@
-$('.main_svg').removeAttr('data-chart');
-$('.main_svg').attr('data-chart', '<%= raw @chart %>');
-var chart = $('.main_svg').data('chart');
-console.log("Update chart...");
-render(chart);
+$('.options_modal').css( {top: 0, left: -800});
+var url = '/load/trees/' + <%= @tree.id %> + '/familymembers/';
+	d3.json(url, function(error, data){
+		console.log(data);
+		if (error) return console.warn(error);
+		console.log("DATA");
+		render(data);
+	});
