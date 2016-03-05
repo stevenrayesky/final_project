@@ -1,0 +1,28 @@
+ @import "variables";
+
+.trees_container {
+
+}
+
+.new_tree {
+	text-align: center;
+}
+
+.new_tree_heading {
+	text-align: center;
+	color: #4E5783;
+}
+
+.tree_name {
+	text-align: center;
+	margin: 30px 0;
+	font-size: 30px;
+}
+
+.tree_destroy {
+	color: $lightGray;
+	transition: color 0.5s;
+	&:hover {
+		color: $red;
+	}
+}

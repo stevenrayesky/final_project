@@ -4,17 +4,27 @@ var render = function(data) {
 	var rect_width = 100;
 	var rect_height = 50;
 	var tree_id = data.id;
+	var docWidth = $(document).width();
 
-	// var svg = d3.select(".main_container").append("svg")
-	// .attr("width", 1000)
-	// .attr("height", 1000)
-	// .append("g")
-	// .attr("transfo rm", "translate(50, 50)");
+	// This function finds how deep the tree is.
+	getDepth = function (root) {
+    var depth = 0;
+    if (root.children) {
+        root.children.forEach(function (d) {
+            var tmpDepth = getDepth(d)
+            if (tmpDepth > depth) {
+                depth = tmpDepth
+            }
+        })
+    }
+    return 1 + depth
+};
 
-	var svg = d3.select(".main_svg");
+	var svg = d3.select(".main_g");
+		// .attr('transform', function(d) { return "translate(" + docWidth/20 + "," + 0 + ")"; } );
 
 	var tree = d3.layout.tree()
-	.size([700, 400]);
+	.size([1000, (getDepth(data) *100)]);
 
 	var nodes = tree.nodes(data);
 	var links = tree.links(nodes);
@@ -22,25 +32,33 @@ var render = function(data) {
 	// Bind data
 	var node = svg.selectAll(".node")
 		.data(nodes, function(d) { return d.id; });
-	// var test = svg.selectAll(".node")
-	// 	.data(nodes);
 
-	// Enter phase
-	var g = node.enter().append("g")
-		.attr("class", "node")
-		.attr("transform", function (d) { return "translate(" + d.x + "," + d.y + ")"; })
-		.attr("data", function (d) { return d.id});
 
-	var rects = g.append("rect")
+	// node Enter phase
+	node.enter()
+		.append("g")
+			.attr('opacity', 0)
+			.attr("class", "node")
+			.attr("data", function (d) { return d.id});
+
+	// node Update Phase
+		node
+		.transition().duration(1000).attr("transform", function (d) { return "translate(" + d.x + "," + (d.y + rect_height) + ")"; })
+		.transition().duration(1000).attr('opacity', 1.0);
+
+	var rects = node.append("rect")
 		.attr("class", "rect")
 		.attr("width", rect_width)
 		.attr("height", rect_height)
+		.attr("rx", 10)
+		.attr("yx", 10)
 		.attr("fill", "steelblue");
 
-	var texts = g.append("text")
+	var texts = node.append("text")
 		.attr("text-anchor", "middle")
 		.attr("x", 50)
 		.attr("y", 30)
+		.attr('fill', 'black')
 		.text(function (d) { if(d.spouse != null) {
 		return d.first_name + " and " + d.spouse;
 		} else {
@@ -48,24 +66,52 @@ var render = function(data) {
 		};});
 
 	// Exit phase
-	node.exit().remove();
+	node.exit().transition().duration(1000).remove();
 
 	var diagonal = d3.svg.diagonal()
 	.projection(function (d) { return [d.x + (rect_width/2), d.y + rect_height]; });
 
+	// Bind data to link
 	var link = svg.selectAll(".link")
 	.data(links, function(d){ return d.target.id });
+	
+	// link Enter Phase
 	link.enter()
-	.append("path")
+	.insert('path', '.node')
 	.attr("class", "link")
 	.attr("fill", "none")
 	.attr("stroke", "grey")
-	.attr("d", diagonal);
+	.attr("data", function (d) { return d.id})
+	.call(transition);
 
-	link.exit().remove();
+	
+
+	function transition(path) {
+  path.transition()
+      .duration(1500)
+      .attrTween("stroke-dasharray", tweenDash)
+};
+
+function tweenDash() {
+  var l = this.getTotalLength(),
+      i = d3.interpolateString("0," + l, l + "," + l);
+  return function(t) { return i(t); };
+};
+
+	// link Update Phase
+	link
+	.attr("d", diagonal)
+	.attr("stroke-dasharray", "1, 0");
+	// .call(transition);
+
+	// link Exit Phase
+	link.exit()
+		.transition().duration(1000).attr('stroke', 'none')
+		.transition().duration(2000).remove();
+
 // ready function is in trees.js
 ready();
-
+	
 };
 
 $(document).on('page:load page:change', function(){
@@ -73,12 +119,14 @@ $(document).on('page:load page:change', function(){
 	// $('svg').remove();
 	window.setTimeout(function(){
 			if ($('.options_modal').length == 1 ) {
-		console.log("Rendering...")
+		console.log("Rendering...");
 		render($('.main_svg').data('chart'));
 	}
 	},1000);
 
 });
+
+
 
 
 // gon.watch('familymembers', render);

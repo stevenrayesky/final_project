@@ -40,7 +40,7 @@ class FamilymembersController < ApplicationController
 		end
 		@top = @tree.find_origin
 		@tree = Tree.find(params[:tree_id])	
-		@chart = {children: @top.fill_array, first_name: @top.first_name, id: @top.id, tree_id: @tree.id, spouse: @top.partners.first.first_name}.to_json
+		@chart = {children: @top.fill_array, first_name: @top.first_name, id: @top.id, tree_id: @tree.id}.to_json
 		respond_to do |format|
 			format.js
 		end
@@ -148,7 +148,7 @@ class FamilymembersController < ApplicationController
 		if @familymember.destroy
 			@top = @tree.find_origin
 			if @tree.familymembers?
-				@chart = {children: @top.fill_array, first_name: @top.first_name, id: @top.id, tree_id: @tree.id, spouse: @top.partners.first.first_name}
+				@chart = {children: @top.fill_array, first_name: @top.first_name, id: @top.id, tree_id: @tree.id}
 			end
 			respond_to do |format|
 				format.js
@@ -163,7 +163,7 @@ class FamilymembersController < ApplicationController
 		@tree = Tree.find(params[:tree_id])	
 		@top = @tree.find_origin
 		if @tree.familymembers?
-			@chart = {children: @top.fill_array, first_name: @top.first_name, id: @top.id, tree_id: @tree.id, spouse: @top.partners.first.first_name}
+			@chart = {children: @top.fill_array, first_name: @top.first_name, id: @top.id, tree_id: @tree.id}
 		end
 		respond_to do |format|
 			format.json { render json: @chart.to_json }

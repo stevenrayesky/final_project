@@ -10,21 +10,58 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
- *= require_self
  */
 
+ @import "familymembers";
+ @import "sessions";
+ @import "trees";
+ @import "trees_index";
+ @import "users";
+ @import "variables";
+
+html {
+	font-family: $droid;
+}
+
+body {
+	margin: 0;
+}
+
+header {
+	margin: 25px 0;
+}
+
+img.background {
+	width: 100%;
+	position: fixed;
+	z-index: -10;
+}
+
+input {
+	font-family: $droid;
+}
+
 .main_container {
-	width: 900px;
+	width: 100%;
 	margin: 0 auto;
-	border: solid 1px black;
 	position: relative;
 }
 
 .nav_link_list {
+	padding: 0;
+	text-align: center;
 	list-style-type: none;
 }
 
 .nav_links {
 	display: inline-block;	
+	a {
+		font-size: 25px;
+		padding: 0 25px 0 25px;
+	}
+}
+
+a {
+	text-decoration: none;
+	color: #4E5783;
 }
