@@ -51,19 +51,22 @@ class FamilymembersController < ApplicationController
 		@child = Familymember.find(familymember_params[:child_id])
 		@familymember = Familymember.new(familymember_params.except!(:child_id))
 		@tree = Tree.where(id: params[:tree_id]).first
-		# If this is the first familymember of a tree, it is set as the origin.
-		if @tree.familymembers? == false
-			@familymember.origin = true
-		end
 		
 		@familymember.tree_id = @tree.id
 		if @familymember.save
 			if @child.id
 				@new_parent_relationship = ChildRelationship.new
 				@new_parent_relationship.parent_id = @familymember.id
+
 				@new_parent_relationship.child_id = @child.id
 				@new_parent_relationship.save
-			end	
+			end
+			if @child.origin == true
+				@child.origin = false
+				@child.save
+				@familymember.origin = true
+				@familymember.save
+			end
 		end
 		redirect_to (:back)
 	end
