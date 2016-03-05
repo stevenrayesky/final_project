@@ -2,10 +2,12 @@ var ready = function() {
 
 	// MOVE Familymember Options Modal into view.
 	$('.node').on('click', function(){
-		var chart = $('.main_svg').data('chart')
+		var chart = $('.main_svg').data('chart');
 		var tree_id = chart.tree_id;
 		var member_id = $(this).attr('data');
-		$('.options_modal').css( {top:event.pageY - 50, left: event.pageX - 170});
+		var coordLeft = $(this).offset().left;
+		var coordTop = $(this).offset().top;
+		$('.options_modal').css( {top: coordTop - 70, left: coordLeft + 105});
 		$('#view_item').attr('href', function() { return "/trees/" + tree_id + "/familymembers/" + member_id})
 		
 		$('#edit_item').attr('href', function() { return "/trees/" + tree_id + "/familymembers/" + member_id + "/edit"})

@@ -1,7 +1,7 @@
 $("#delete_item").on("ajax:complete", function(){
 	$('.options_modal').css( {top: 0, left: -800});
-	// var delete_member_id = $('#delete_item').attr('data');
-	// $('.node[data=' + delete_member_id + ']').animate({"opacity": "0"}, 1000).delay(500).slideUp(1000);
+	var delete_member_id = $('#delete_item').attr('data');
+	$('.node[data=' + delete_member_id + ']').animate({"opacity": "0"}, 1000).delay(500).slideUp(1000);
 	// console.log("Update chart...");
 	// $('.main_svg').removeData('data-chart');
 	// $('.main_svg').removeAttr('data-chart');

@@ -1,16 +1,17 @@
+<%= content_tag :h1, "Start a new tree", class: "new_tree_heading" %>
 <%= form_for @tree, url: { controller: 'trees', action: 'create' } do |f| %>
-	<%= f.label :name %> 
 	<%= f.text_field :name %>
+	<br>
 	<%= f.submit :create %>
 <% end %>
   
-<%= content_tag :div do %>
+<%= content_tag :div, class: "trees_container" do %>
 	<% @trees.each do |tree| %>
 		<%= content_tag :div, class: "tree_divs" do %>
 			<%= content_tag :p, class: "tree_name" do %>
 				<%= link_to tree.name, user_tree_path(@current_user.id, tree.id) %> 
 				<%= content_tag :span do %>
-					<%= link_to "delete tree", user_tree_path(@current_user.id, tree.id), controller: 'trees', method: 'delete', id: 'tree', action: 'destroy', class: "tree_destroy"  %>
+					<%= link_to "delete", user_tree_path(@current_user.id, tree.id), controller: 'trees', method: 'delete', id: 'tree', action: 'destroy', class: "tree_destroy", data: { confirm: "Are you sure?" } %>
 				<% end %>
 			<% end %>
 		<% end %>

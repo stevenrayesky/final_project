@@ -20,9 +20,9 @@ class TreesController < ApplicationController
 		@top = @tree.find_origin
 		# Variable to send to D3 script.
 		if @tree.familymembers?
-			@chart = {children: @top.fill_array, first_name: @top.first_name, id: @top.id, tree_id: @tree.id, spouse: @top.partners.first.first_name}
+			@chart = {children: @top.fill_array, first_name: @top.first_name, id: @top.id, tree_id: @tree.id }
 		end
-		
+
 	end
 
 	def create

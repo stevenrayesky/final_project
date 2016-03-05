@@ -1,0 +1,41 @@
+ @import "variables";
+
+.centering_div {
+	margin: 0 auto;
+	text-align: center;
+	height: 400px;
+	
+}
+
+.login_container {
+	margin: 0 auto;
+	text-align: center;
+	width: 200px;
+	height: 250px;
+	border-radius: 15px;
+	background-color: $transparentGray;
+	a {
+		color: $offwhite;
+	}
+}
+
+.title_container {
+	margin: 0 auto 50px auto;
+	text-align: center;
+}
+
+.title_span {
+	font-size: 150px;
+	color: #F2C500;
+}
+
+.new_user {
+	padding-top: 20%;
+}
+
+.field {
+	label {
+		font-size: 20px;
+		color: $offwhite;
+	}
+}
