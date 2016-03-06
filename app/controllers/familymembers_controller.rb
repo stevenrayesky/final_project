@@ -61,6 +61,7 @@ class FamilymembersController < ApplicationController
 				@new_parent_relationship.child_id = @child.id
 				@new_parent_relationship.save
 			end
+			# Changes the origin to the parent if the child was the current origin.
 			if @child.origin == true
 				@child.origin = false
 				@child.save
@@ -178,6 +179,6 @@ class FamilymembersController < ApplicationController
 	private
 
 	def familymember_params
-		params.require(:familymember).permit(:first_name, :last_name, :birthday, :death, :birth_loc, :death_loc, :parent_id, :child_id, :partner_id, :kind)
+		params.require(:familymember).permit(:first_name, :last_name, :birthday, :death, :birth_loc, :death_loc, :parent_id, :child_id, :partner_id, :kind, :gender)
 	end
 end

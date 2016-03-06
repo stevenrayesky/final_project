@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20160218155322) do
     t.integer  "tree_id"
     t.text     "children"
     t.string   "spouse"
+    t.string   "gender"
     t.boolean  "origin",     default: false
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
