@@ -10,6 +10,7 @@ class CreateFamilymembers < ActiveRecord::Migration
       t.integer :tree_id
       t.text :children
       t.string :spouse
+      t.string :gender
       t.boolean :origin, default: false
       t.timestamps null: false
     end

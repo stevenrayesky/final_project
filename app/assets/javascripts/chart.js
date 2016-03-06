@@ -8,17 +8,22 @@ var render = function(data) {
 
 	// This function finds how deep the tree is.
 	getDepth = function (root) {
-    var depth = 0;
-    if (root.children) {
-        root.children.forEach(function (d) {
-            var tmpDepth = getDepth(d)
-            if (tmpDepth > depth) {
-                depth = tmpDepth
-            }
-        })
-    }
-    return 1 + depth
-};
+	    var depth = 0;
+	    if (root.children) {
+	        root.children.forEach(function (d) {
+	            var tmpDepth = getDepth(d)
+	            if (tmpDepth > depth) {
+	                depth = tmpDepth
+	            }
+	        })
+	    }
+	    return 1 + depth
+	};
+
+	// Ordinal scale to return color of rects.
+	var scale = d3.scale.ordinal()
+		.domain(["male", "female", "transgender"])
+		.range(["steelblue", "pink", "green"]);
 
 	var svg = d3.select(".main_g");
 		// .attr('transform', function(d) { return "translate(" + docWidth/20 + "," + 0 + ")"; } );
@@ -52,7 +57,7 @@ var render = function(data) {
 		.attr("height", rect_height)
 		.attr("rx", 10)
 		.attr("yx", 10)
-		.attr("fill", "steelblue");
+		.attr("fill", function(d) { return scale(d.gender)});
 
 	var texts = node.append("text")
 		.attr("text-anchor", "middle")
