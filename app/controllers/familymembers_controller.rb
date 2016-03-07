@@ -38,9 +38,7 @@ class FamilymembersController < ApplicationController
 			end
 			@familymember.make_siblings(@parent)
 		end
-		@top = @tree.find_origin
-		@tree = Tree.find(params[:tree_id])	
-		@chart = {children: @top.fill_array, first_name: @top.first_name, id: @top.id, tree_id: @tree.id}.to_json
+		
 		respond_to do |format|
 			format.js
 		end
@@ -69,7 +67,9 @@ class FamilymembersController < ApplicationController
 				@familymember.save
 			end
 		end
-		redirect_to (:back)
+		respond_to do |format|
+			format.js
+		end
 	end
 
 	def create_partner
@@ -91,7 +91,9 @@ class FamilymembersController < ApplicationController
 				@new_partner_relationship.save
 			end	
 		end
-		redirect_to (:back)
+		respond_to do |format|
+			format.js
+		end
 	end
 
 

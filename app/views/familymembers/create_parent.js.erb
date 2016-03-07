@@ -1,0 +1,8 @@
+$('.options_modal').css( {top: 0, left: -800});
+var url = '/load/trees/' + <%= @tree.id %> + '/familymembers/';
+	d3.json(url, function(error, data){
+		console.log(data);
+		if (error) return console.warn(error);
+		console.log("DATA");
+		render(data);
+	});
