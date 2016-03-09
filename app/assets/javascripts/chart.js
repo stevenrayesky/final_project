@@ -1,10 +1,16 @@
 var render = function(data) {
 	console.log('Running Render...');
 	console.log(data);
-	var rect_width = 100;
-	var rect_height = 50;
+	var rectW = 100;
+	var rectH = 50;
 	var tree_id = data.id;
 	var docWidth = $(document).width();
+	var margin = {
+		top: 20,
+		right: 20,
+		bottom: 20,
+		left: 20
+	}
 
 	// This function finds how deep the tree is.
 	getDepth = function (root) {
@@ -25,11 +31,11 @@ var render = function(data) {
 		.domain(["male", "female", "transgender"])
 		.range(["steelblue", "pink", "green"]);
 
-	var svg = d3.select(".main_g");
-		// .attr('transform', function(d) { return "translate(" + docWidth/20 + "," + 0 + ")"; } );
+	var svg = d3.select(".main_g")
+		.attr('transform', function(d) { return "translate(" + docWidth/ 2 + "," + 0 + ")"; } );
 
 	var tree = d3.layout.tree()
-	.size([1000, (getDepth(data) *100)]);
+	.nodeSize([150, 100]);
 
 	var nodes = tree.nodes(data);
 	var links = tree.links(nodes);
@@ -48,13 +54,13 @@ var render = function(data) {
 
 	// node Update Phase
 		node
-		.transition().duration(1000).attr("transform", function (d) { return "translate(" + d.x + "," + (d.y + rect_height) + ")"; })
+		.transition().duration(1000).attr("transform", function (d) { return "translate(" + d.x + "," + (d.y + rectH) + ")"; })
 		.transition().duration(1000).attr('opacity', 1.0);
 
 	var rects = node.append("rect")
 		.attr("class", "rect")
-		.attr("width", rect_width)
-		.attr("height", rect_height)
+		.attr("width", rectW)
+		.attr("height", rectH)
 		.attr("rx", 10)
 		.attr("yx", 10)
 		.attr("fill", function(d) { return scale(d.gender)});
@@ -74,7 +80,7 @@ var render = function(data) {
 	node.exit().transition().duration(1000).remove();
 
 	var diagonal = d3.svg.diagonal()
-	.projection(function (d) { return [d.x + (rect_width/2), d.y + rect_height]; });
+	.projection(function (d) { return [d.x + (rectW/2), d.y + rectH]; });
 
 	// Bind data to link
 	var link = svg.selectAll(".link")
