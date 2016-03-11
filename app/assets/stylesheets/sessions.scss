@@ -7,6 +7,13 @@
 	
 }
 
+footer {
+	background-color: $offwhite;
+	height: 200px;
+	width: 100%;
+	opacity: 0.8;
+}
+
 .login_container {
 	margin: 0 auto;
 	text-align: center;
@@ -26,7 +33,7 @@
 
 .title_span {
 	font-size: 150px;
-	color: #F2C500;
+	color: $chambray;
 }
 
 .new_user {

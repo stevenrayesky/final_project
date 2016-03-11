@@ -1,4 +1,4 @@
-<%= form_for @member, url: tree_familymember_path(@tree.id, @member.id), method: :put do |f| %>
+<%= form_for @member, remote: true, url: tree_familymember_path(@tree.id, @member.id), method: :put do |f| %>
 	<%= f.select :gender, options_for_select([['male', 'male'], ['female', 'female'], ['transgender', 'transgender']]) %>
 	<%= f.text_field :first_name, placeholder: "First name" %>
 	<br>
