@@ -104,10 +104,13 @@ class FamilymembersController < ApplicationController
 	end
 
 	def update
+		@tree = Tree.find(params[:tree_id])
 		@familymember = Familymember.find(params[:id])
 		@familymember.update(familymember_params)
 		if @familymember.save
-			redirect_to (:back)
+			respond_to do |format|
+				format.js
+			end
 		end
 	end
 

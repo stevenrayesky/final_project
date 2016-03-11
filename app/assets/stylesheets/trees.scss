@@ -14,12 +14,13 @@
 
 .edit_tree {
 	text-align: center;
+	margin-top: 10px;
 	input {
 		background-color: transparent;
 		border: none;
 		text-align: center;
 		font: 25px $droid;
-		color: $green;
+		color: $darkGray;
 	}
 	:focus {
 		outline: none;
@@ -92,10 +93,7 @@
 	}
 
 .main_svg {
-	overflow: scroll;
 	width: 100%;
-	height: 1000px;
-	// text-align: center;
 	.main_g {
 		// transform: translate(50, 50);
 	}

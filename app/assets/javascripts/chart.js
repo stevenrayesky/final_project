@@ -11,7 +11,6 @@ var render = function(data) {
 		bottom: 20,
 		left: 20
 	}
-
 	// This function finds how deep the tree is.
 	getDepth = function (root) {
 	    var depth = 0;
@@ -29,13 +28,21 @@ var render = function(data) {
 	// Ordinal scale to return color of rects.
 	var scale = d3.scale.ordinal()
 		.domain(["male", "female", "transgender"])
-		.range(["steelblue", "pink", "green"]);
+		.range(["#B4E0DB", "#F27C78", "#CC9999"]);
 
 	var svg = d3.select(".main_g")
-		.attr('transform', function(d) { return "translate(" + docWidth/ 2 + "," + 0 + ")"; } );
+		.attr("transform", "translate(" + (600) + "," + 0 + ")");
+
+	
+	d3.select(".main_svg")
+		.attr("height", getDepth(data)*150);
+		// .call(d3.behavior.zoom().on("zoom", function () {
+  //       svg.attr("transform", "translate(" + d3.event.translate + ")" + " scale(" + d3.event.scale + ")")
+  //     		})
+		// );
 
 	var tree = d3.layout.tree()
-	.nodeSize([150, 100]);
+	.nodeSize([110, 100]);
 
 	var nodes = tree.nodes(data);
 	var links = tree.links(nodes);
@@ -70,11 +77,7 @@ var render = function(data) {
 		.attr("x", 50)
 		.attr("y", 30)
 		.attr('fill', 'black')
-		.text(function (d) { if(d.spouse != null) {
-		return d.first_name + " and " + d.spouse;
-		} else {
-			return d.first_name
-		};});
+		.text(function (d) { return d.first_name });
 
 	// Exit phase
 	node.exit().transition().duration(1000).remove();
