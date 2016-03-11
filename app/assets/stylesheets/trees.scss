@@ -39,13 +39,13 @@
 
 .options_modal {
 	width: 125px;
-	height: 135px;
+	height: 200px;
 	position: absolute;
 	left: -800px;
 	top: 0;
 	border-radius: 15px;
 	text-align: center;
-	background-color: $green;
+	background-color: $chambray;
 }
 
 .options_list {
@@ -80,7 +80,7 @@
 	height: 210px;
 	position: absolute;
 	border-radius: 15px;
-	background-color: $green;
+	background-color: $chambray;
 	color: $white;
 	
 }
@@ -105,4 +105,10 @@
 	position: absolute;
 	border: black solid 1px;
 	background-color: #89C9FF;
+}
+.icons {
+	width:25px;
+}
+.child_item {
+	
 }
