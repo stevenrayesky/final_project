@@ -9,7 +9,9 @@
   <%= csrf_meta_tags %>
 </head>
 
-<% if user_signed_in? %>
+
+<div class="main_container">
+	<% if user_signed_in? %>
 	<header>
 		<nav>
 				<%= content_tag :ul, class: "nav_link_list" do %>
@@ -26,7 +28,6 @@
 			<% end %>
 		</nav>
 	</header>
-<div class="main_container">
 	<%= yield %>
 </div>
 </body>

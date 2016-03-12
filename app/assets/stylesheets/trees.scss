@@ -27,6 +27,10 @@
 	}
 }
 
+text {
+	cursor: pointer;
+}
+
 .rect {
 	stroke-width:1;
 	stroke:rgb(0,0,0);
@@ -68,12 +72,11 @@
 	left: 42.5%;
 	top: 40%;
 	cursor: pointer;
-	color: $lightGray;
-	opacity: 0.2;
-	transition: color 0.5s, opacity 5s;
+	color: $chambray;
+	opacity: 0.3;
+	transition: opacity 5.0s;
 	&:hover{
-		color: $chambray;
-		opacity: 0.9;
+		opacity: 1.0;
 	}
 }
 
