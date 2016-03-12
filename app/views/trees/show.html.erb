@@ -44,28 +44,13 @@
 <!-- BEGIN OPTIONS MODAL -->
 <% if @top %>
 	<%= content_tag :div, class: "options_modal" do %>
-		<%= content_tag :ul,  class: "options_list" do %>
-		<%= content_tag :li, class: "option_item" do %>
-				<%= link_to "", tree_familymember_path(@tree.id, @top.id), class: "li_items fa fa-eye fa-2x", id: "view_item" %>
-			<% end %>
-			<%= content_tag :li, class: "option_item" do %>
-				<%= link_to "", edit_tree_familymember_path(@tree.id, @top.id), remote: true, class: "li_items fa fa-pencil-square-o fa-2x", id: "edit_item" %>
-			<% end %>
-			<%= content_tag :li, class: "option_item" do %>
-				<%= link_to image_tag('marigoldicon.png', class: "icons"), new_child_path(@tree.id, @top.id), remote: true, class: "li_items", id: "child_item" %>
-			<% end %>
-			<%= content_tag :li, class: "option_item" do %>
-				<%= link_to "New Parent", new_parent_path(@tree.id, @top.id), remote: true, class: "li_items", id: "parent_item" %>
-			<% end %>
-			<%= content_tag :li, class: "option_item" do %>
-				<%= link_to "New Partner", new_partner_path(@tree.id, @top.id), remote: true, class: "li_items", id: "partner_item" %>
-			<% end %>
-			<%= content_tag :li, class: "option_item" do %>
-				<%= link_to "", tree_familymember_path(@tree.id, @top.id), remote: true, controller: :familymembers, method: :delete, class: "li_items fa fa-trash-o fa-2x", id: "delete_item" %>
-			<% end %>
-		<% end %>
-		<%= content_tag :span, class: "close_modal" do %>
-			X
+		<%= link_to "", tree_familymember_path(@tree.id, @top.id), class: "modal_options fa fa-eye fa-3x deg330", id: "view_item", title: "View" %>
+		<%= link_to "", edit_tree_familymember_path(@tree.id, @top.id), remote: true, class: "modal_options fa fa-pencil-square-o fa-3x deg150", id: "edit_item", title: "Edit" %>
+		<%= link_to "", new_child_path(@tree.id, @top.id), remote: true, class: "modal_options fa fa-child fa-3x deg90", id: "child_item", title: "New Child" %>
+		<%= link_to "", new_parent_path(@tree.id, @top.id), remote: true, class: "modal_options fa fa-male fa-3x deg270", id: "parent_item", title: "New Parent" %>
+		<%= link_to "", new_partner_path(@tree.id, @top.id), remote: true, class: "modal_options fa fa-heart fa-3x deg210", id: "partner_item", title: "New Partner" %>
+		<%= link_to "", tree_familymember_path(@tree.id, @top.id), remote: true, controller: :familymembers, method: :delete, class: "modal_options fa fa-trash-o fa-3x deg30", id: "delete_item", title: "Delete" %>
+		<%= content_tag :span, class: "close_modal fa fa-times fa-3x " do %>
 		<% end %>
 	<% end %>
 <% end %>

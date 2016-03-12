@@ -7,7 +7,8 @@ var ready = function() {
 		var member_id = $(this).attr('data');
 		var coordLeft = $(this).offset().left;
 		var coordTop = $(this).offset().top;
-		$('.options_modal').css( {top: coordTop - 70, left: coordLeft + 105});
+		$('.options_modal').css( {top: coordTop - 160, left: coordLeft - 55});
+		$('.options_modal').animate({opacity: 1.0}, 1000);
 		$('#view_item').attr('href', function() { return "/trees/" + tree_id + "/familymembers/" + member_id})
 		
 		$('#edit_item').attr('href', function() { return "/trees/" + tree_id + "/familymembers/" + member_id + "/edit"})
@@ -24,8 +25,8 @@ var ready = function() {
 
 	// Close Options Modal with click of "X".
 	$('.close_modal').on('click', function(){
-		
-		$('.options_modal').css( {top: 0, left: -400});
+		$('.options_modal').animate({opacity: 0}, 500);
+		$('.options_modal').animate( {top: 0, left: -1200}, 50);
 
 	});
 
@@ -40,6 +41,7 @@ var ready = function() {
 			$('.new_familymember').remove();
 	};	
 });
+
 	// Close new form when the edit form is opened.
 	$('#edit_item').on('click', function(){
 		$('.edit_familymember').remove();
@@ -60,5 +62,4 @@ var ready = function() {
 		$('.new_familymember').remove();
 		$('.edit_familymember').remove();
 	});
-	
 };
