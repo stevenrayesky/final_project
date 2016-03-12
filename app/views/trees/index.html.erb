@@ -1,3 +1,6 @@
+<%= image_tag "marigoldr.jpg", class: "background" %>
+<%= content_tag :div, class: "filter" do %>
+<% end %>
 <%= content_tag :h1, "Start a new tree", class: "new_tree_heading" %>
 <%= form_for @tree, url: { controller: 'trees', action: 'create' } do |f| %>
 	<%= f.text_field :name %>
