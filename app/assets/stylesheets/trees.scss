@@ -33,45 +33,48 @@
 	cursor: pointer;
 }
 
-.link {
-
-}
-
 .options_modal {
-	width: 125px;
-	height: 135px;
+	width: 200px;
+	height: 200px;
 	position: absolute;
-	left: -800px;
+	opacity: 0;
+	left: -1200px;
 	top: 0;
 	border-radius: 15px;
 	text-align: center;
-	background-color: $green;
-}
-
-.options_list {
-	padding: 0;
-	list-style-type: none;
-}
-
-.option_item {
-	cursor: pointer;
-	span {
-		font-size: 20px;
-	}
-	a {
-		color: $white;
-		transition: color 0.5s;
+	.fa-3x {
+		font-size: 3em;
+		transition: font-size 0.3s;
 		&:hover {
-			color: $red;
+			font-size: 3.5em;
+		}
+	}
+	.fa-times {
+		&:hover {
+		font-size: 3em;
 		}
 	}
 }
 
+.modal_options {
+	position:absolute;
+	left: 42.5%;
+	top: 40%;
+	cursor: pointer;
+}
+
 .close_modal {
 	position: absolute;
-	left: 85%;
-	top: 0;
+	left: 42.5%;
+	top: 40%;
 	cursor: pointer;
+	color: $lightGray;
+	opacity: 0.2;
+	transition: color 0.5s, opacity 5s;
+	&:hover{
+		color: $chambray;
+		opacity: 0.9;
+	}
 }
 
 .edit_familymember,
@@ -80,7 +83,7 @@
 	height: 210px;
 	position: absolute;
 	border-radius: 15px;
-	background-color: $green;
+	background-color: $chambray;
 	color: $white;
 	
 }
@@ -94,9 +97,6 @@
 
 .main_svg {
 	width: 100%;
-	.main_g {
-		// transform: translate(50, 50);
-	}
 }
 
 .new_partner_relationship {
@@ -106,3 +106,14 @@
 	border: black solid 1px;
 	background-color: #89C9FF;
 }
+
+.deg30 {transform: rotate(30deg) translate(90px) rotate(-30deg); }
+.deg90 {transform: rotate(90deg) translate(90px) rotate(-90deg); }
+.deg150 {transform: rotate(150deg) translate(90px) rotate(-150deg); }
+.deg210 {transform: rotate(210deg) translate(90px) rotate(-210deg); }
+.deg270 {transform: rotate(270deg) translate(90px) rotate(-270deg); }
+.deg330 {transform: rotate(330deg) translate(90px) rotate(-330deg); }
+
+
+
+
