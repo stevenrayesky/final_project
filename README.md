@@ -1,4 +1,4 @@
-## Family Tree
+## Marigold
 
 This is my final project at NYCDA Philly.
 
