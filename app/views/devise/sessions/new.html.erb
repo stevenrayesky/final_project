@@ -2,6 +2,9 @@
 <%= content_tag :div, class: "title_container" do %>
   <%= content_tag :span, "Marigold", class: "title_span" %>
 <% end %>
+<% flash.each do |name, msg| %>
+    <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
+  <% end %>  
 <%= content_tag :div, class: "centering_div" do %>
   <%= content_tag :div, class: "login_container" do %>
     <%= content_tag :div, class: "login_div inner_login" do %>

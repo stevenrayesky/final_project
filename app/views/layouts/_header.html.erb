@@ -1,15 +1,16 @@
-<header>
+<% if user_signed_in? %>
+	<header>
+		<%= content_tag :span, "Marigold", class: "title_span" %>
 		<nav>
-			<% if user_signed_in? %>
 				<%= content_tag :ul, class: "nav_link_list" do %>
 					<%= content_tag :li, class: "nav_links" do %>
-						<%= link_to "Your Trees", user_trees_path(current_user) %>
+						<%= link_to "YOUR TREES", user_trees_path(current_user) %>
 					<% end %>
 					<%= content_tag :li, class: "nav_links" do %>
-						<%= link_to "Edit Profile", edit_user_registration_path %>
+						<%= link_to "PROFILE", edit_user_registration_path %>
 					<% end %>
 					<%= content_tag :li, class: "nav_links" do %>
-						<%= link_to "Sign Out", destroy_user_session_path, {method: :delete} %>
+						<%= link_to "SIGN OUT", destroy_user_session_path, {method: :delete} %>
 					<% end %>
 				<% end %>
 			<% end %>
