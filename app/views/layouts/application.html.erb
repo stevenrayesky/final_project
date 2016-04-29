@@ -8,26 +8,9 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-
-
+<%= image_tag "marigoldr.jpg", class: "background" %>
 <div class="main_container">
-	<% if user_signed_in? %>
-	<header>
-		<nav>
-				<%= content_tag :ul, class: "nav_link_list" do %>
-					<%= content_tag :li, class: "nav_links" do %>
-						<%= link_to "Your Trees", user_trees_path(current_user) %>
-					<% end %>
-					<%= content_tag :li, class: "nav_links" do %>
-						<%= link_to "Edit Profile", edit_user_registration_path %>
-					<% end %>
-					<%= content_tag :li, class: "nav_links" do %>
-						<%= link_to "Sign Out", destroy_user_session_path, {method: :delete} %>
-					<% end %>
-				<% end %>
-			<% end %>
-		</nav>
-	</header>
+	<%= render 'layouts/header' %>
 	<%= yield %>
 </div>
 </body>

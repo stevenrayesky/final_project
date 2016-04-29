@@ -1,4 +1,11 @@
-.edit_form {
-	margin: 0 auto;
+.edit_form_div{
+	border-radius: 15px;
+	padding: 10px;
+	background-color: $offwhite;
+	margin: 50px auto;
 	width: 600px;
+	color: $chambray;
+	label {
+		color: $chambray;
+	}
 }

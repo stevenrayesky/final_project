@@ -19,8 +19,8 @@
 		background-color: transparent;
 		border: none;
 		text-align: center;
-		font: 25px $droid;
-		color: $darkGray;
+		font: 25px $lato;
+		color: $chambray;
 	}
 	:focus {
 		outline: none;
@@ -47,6 +47,7 @@ text {
 	border-radius: 15px;
 	text-align: center;
 	.fa-3x {
+		color: $chambray;
 		font-size: 3em;
 		transition: font-size 0.3s;
 		&:hover {
@@ -83,7 +84,7 @@ text {
 .edit_familymember,
 .new_familymember {
 	width: 150px;
-	height: 210px;
+	height: 220px;
 	position: absolute;
 	border-radius: 15px;
 	background-color: $chambray;

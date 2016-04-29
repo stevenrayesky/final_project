@@ -7,7 +7,7 @@ var ready = function() {
 		var member_id = $(this).attr('data');
 		var coordLeft = $(this).offset().left;
 		var coordTop = $(this).offset().top;
-		$('.options_modal').css( {top: coordTop - 160, left: coordLeft - 55});
+		$('.options_modal').css( {top: coordTop - 80, left: coordLeft - 55});
 		$('.options_modal').animate({opacity: 1.0}, 1000);
 		$('#view_item').attr('href', function() { return "/trees/" + tree_id + "/familymembers/" + member_id})
 		
